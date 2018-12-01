@@ -5,11 +5,9 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './maps-item.component.html',
   styleUrls: ['./maps-item.component.scss']
 })
-export class MapsItemComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class MapsItemComponent {
+  title: string = 'Countries around the world';
+  lat: number = 51.678418;
+  lng: number = 7.909007;
 }
