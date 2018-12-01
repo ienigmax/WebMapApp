@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class MapsItemComponent {
   title: string = 'Countries around the world';
-  lat: number = 51.678418;
-  lng: number = 7.909007;
+  zoom: number = 2.3;
+  lat: number = 1;
+  lng: number = 1;
 }
