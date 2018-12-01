@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryService } from './country/country.service';
 
 @Component({
   selector: 'app-maps',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    CountryService.fetchCountriesApi().then();
+  }
 
   ngOnInit() {
   }
