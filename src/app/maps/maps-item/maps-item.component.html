@@ -6,9 +6,10 @@
                 [zoom]="zoom"
                 [latitude]="lat"
                 [longitude]="lng">
-          <agm-marker
-                  [latitude]="lat"
-                  [longitude]="lng"
+          <agm-marker *ngFor="let m of markers"
+                  [latitude]="m.lat"
+                  [longitude]="m.lng"
+                  [label]="m.label"
           ></agm-marker>
         </agm-map>
     </div>

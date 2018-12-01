@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CountryService } from '@app/maps/country/country.service';
 
 @Component({
   selector: 'app-map-item',
@@ -11,4 +12,28 @@ export class MapsItemComponent {
   zoom: number = 2.3;
   lat: number = 1;
   lng: number = 1;
+  markers: marker[] = [];
+
+  constructor () {
+      const countries = CountryService.getCountries();
+      setTimeout(() => {
+          console.log(countries);
+          for (let i in countries) {
+              (this.markers).push({
+                  lat: countries[i].lat,
+                  lng: countries[i].lng,
+                  label: countries[i].name,
+                  druggable: false
+              });
+          }
+      }, 2000);
+  }
+
+}
+
+interface marker {
+    lat: number;
+    lng: number;
+    label?: string;
+    druggable: boolean;
 }
