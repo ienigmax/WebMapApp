@@ -12,6 +12,7 @@ import { ShellModule } from './shell/shell.module';
 import { AboutModule } from './about/about.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import {MapsModule} from '@app/maps/maps.module';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
     NgbModule,
     CoreModule,
     SharedModule,
+    MapsModule,
     ShellModule,
     HomeModule,
     AboutModule,
