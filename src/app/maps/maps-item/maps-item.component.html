@@ -1,3 +1,22 @@
-<p>
-  map-item works!
-</p>
+<div class="row">
+    <div class="col-md-9">
+        <h2>{{title }}</h2>
+        <hr>
+        <agm-map
+                [zoom]="zoom"
+                [latitude]="lat"
+                [longitude]="lng">
+          <agm-marker
+                  [latitude]="lat"
+                  [longitude]="lng"
+          ></agm-marker>
+        </agm-map>
+    </div>
+    <div class="col-md-3">
+        <h2>Country Info</h2>
+        <hr>
+        <div class="empty-data">
+            <p>Please, select a country</p>
+        </div>
+    </div>
+</div>
