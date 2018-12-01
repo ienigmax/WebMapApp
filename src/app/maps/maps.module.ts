@@ -20,7 +20,7 @@ import {AgmCoreModule} from '@agm/core';
         SharedModule,
         MapsRoutingModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyCz3KPWoJ8ZSVzOqEVWMh5vZun_ZU3MqSU'
+            apiKey: 'AIzaSyCz3KPWoJ8ZSVzOqEVWMh5vZun_ZU3MqSU'       // Change to another, for testing purposes only
         }),
     ],
     declarations: [
