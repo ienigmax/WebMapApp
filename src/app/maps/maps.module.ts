@@ -10,7 +10,7 @@ import { MapsComponent } from './maps.component';
 import {InfoWindowComponent} from '@app/maps/info-window/info-window.component';
 import {MapsItemComponent} from '@app/maps/maps-item/maps-item.component';
 import {AgmCoreModule} from '@agm/core';
-
+import apiKey from '../../Config/key';
 
 @NgModule({
     imports: [
@@ -20,7 +20,7 @@ import {AgmCoreModule} from '@agm/core';
         SharedModule,
         MapsRoutingModule,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyCz3KPWoJ8ZSVzOqEVWMh5vZun_ZU3MqSU'       // Change to another, for testing purposes only
+            apiKey: apiKey       // Change to another, for testing purposes only
         }),
     ],
     declarations: [
