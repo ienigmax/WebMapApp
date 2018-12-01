@@ -7,9 +7,10 @@
                 [latitude]="lat"
                 [longitude]="lng">
           <agm-marker *ngFor="let m of markers"
+                  [iconUrl]='{"url": m.icon,"scaledSize": {"height": 12, "width": 15}}'
                   [latitude]="m.lat"
                   [longitude]="m.lng"
-                  [label]="m.label"
+                  [openInfoWindow]="m.name"
           ></agm-marker>
         </agm-map>
     </div>

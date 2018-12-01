@@ -20,6 +20,7 @@ export class MapsItemComponent {
           console.log(countries);
           for (let i in countries) {
               (this.markers).push({
+                  icon: countries[i].icon,
                   lat: countries[i].lat,
                   lng: countries[i].lng,
                   label: countries[i].name,
@@ -32,6 +33,7 @@ export class MapsItemComponent {
 }
 
 interface marker {
+    icon: string;
     lat: number;
     lng: number;
     label?: string;
