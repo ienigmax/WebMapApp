@@ -13,7 +13,9 @@ export class MapsItemComponent {
   zoom: number = 2.3;
   lat: number = 1;
   lng: number = 1;
-  markers: marker[] = [];
+  countriesList: countryInfo[] = [];
+  clickedCountry: object;
+  isEmpty: boolean = true;
   geo: GeoService;
 
   constructor () {
@@ -22,9 +24,19 @@ export class MapsItemComponent {
       });
   }
 
-    markerDragEnd($event: MouseEvent) {
-        this.lat = $event.coords.lat;
-        this.lng = $event.coords.lng;
+    clickedMarker(obj: countryInfo) {
+      this.isEmpty = false;
+        this.clickedCountry = {
+            currency: obj.currency,
+            icon: obj.icon,
+            lat: obj.lat,
+            lng: obj.lng,
+            label: obj.label,
+            capital: obj.capital,
+            region: obj.region,
+            population: obj.population
+        };
+        console.log(obj, this.clickedCountry);
     }
 
   private async setMarkers() {
@@ -32,14 +44,17 @@ export class MapsItemComponent {
       setTimeout(() => {
           console.log(countries);
           for (let i in countries) {
-              (this.markers).push({
-                  currency: countries[i].currency,
+              (this.countriesList).push({
+                  capital: countries[i].capital || 'None',
+                  region: countries[i].region  || 'unknown',
+                  currency: countries[i].currency || 'unknown',
                   icon: countries[i].icon,
                   lat: countries[i].lat,
                   lng: countries[i].lng,
                   label: countries[i].name,
                   druggable: false,
-                  range: GeoService.calculateDistance(this.lat, countries[i].lat, this.lng, countries[i].lng)
+                  range: Math.floor(GeoService.calculateDistance(this.lat, countries[i].lat, this.lng, countries[i].lng)) + 'km',
+                  population: countries[i].population,
               });
           }
       }, 2000);
@@ -58,12 +73,15 @@ export class MapsItemComponent {
   }
 }
 
-interface marker {
+interface countryInfo {
     currency: string;
     icon: string;
     lat: number;
     lng: number;
     label?: string;
     druggable: boolean;
-    range: number;
+    range: string;
+    capital: string;
+    region: string;
+    population: number;
 }

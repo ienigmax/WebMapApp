@@ -20,7 +20,7 @@ import apiKey from '../../Config/key';
         SharedModule,
         MapsRoutingModule,
         AgmCoreModule.forRoot({
-            apiKey: apiKey       // Change to another, for testing purposes only
+            apiKey: 'AIzaSyDrG4pglHSdU9h7DP1-Z7eK3uPKvTMQqas'       // Change to another, for testing purposes only
         }),
     ],
     declarations: [

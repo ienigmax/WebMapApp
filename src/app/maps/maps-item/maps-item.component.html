@@ -7,21 +7,22 @@
                 [latitude]="lat"
                 [longitude]="lng">
 
-            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+            <agm-marker [latitude]="lat" [longitude]="lng">
                 <agm-info-window>
                     <p><b>Label:</b> Your position</p>
                 </agm-info-window>
             </agm-marker>
-            <agm-marker *ngFor="let m of markers"
-                  [iconUrl]='{"url": m.icon,"scaledSize": {"height": 12, "width": 15}}'
-                  [latitude]="m.lat"
-                  [longitude]="m.lng"
+            <agm-marker *ngFor="let cl of countriesList"
+                  [iconUrl]='{"url": cl.icon,"scaledSize": {"height": 12, "width": 15}}'
+                  [latitude]="cl.lat"
+                  [longitude]="cl.lng"
+                   (markerClick)="clickedMarker(cl)"
             >
               <agm-info-window>
-                  <h5>Country Info - {{ m.label }}</h5>
+                  <h5>Country Info - {{ cl.label }}</h5>
                   <hr>
-                  <p><b>Currency:</b> {{ m.currency }}</p>
-                  <p><b>Range: </b>{{ m.range }}</p>
+                  <p><b>Currency:</b> {{ cl.currency }}</p>
+                  <p><b>Range: </b>{{ cl.range }}</p>
               </agm-info-window>
           </agm-marker>
         </agm-map>
@@ -29,8 +30,20 @@
     <div class="col-md-3">
         <h2>Country Info</h2>
         <hr>
-        <div class="empty-data">
-            <p>Please, select a country</p>
+        <div *ngIf="isEmpty; else infoBox">
+            <p>Please, click on the country flag to view country details</p>
         </div>
+
+        <ng-template #infoBox>
+            <app-info-window
+                [label]="clickedCountry.label"
+                [capital]="clickedCountry.capital"
+                [region]="clickedCountry.region"
+                [latitude]="clickedCountry.lat"
+                [longtitude]="clickedCountry.lng"
+                [flag]="clickedCountry.icon"
+                [population]="clickedCountry.population"
+            ></app-info-window>
+        </ng-template>
     </div>
 </div>
