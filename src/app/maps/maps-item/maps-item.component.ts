@@ -13,7 +13,7 @@ export class MapsItemComponent {
   zoom: number = 2.3;
   lat: number = 1;
   lng: number = 1;
-  markers: marker[] = [];
+  countriesList: countryInfo[] = [];
   geo: GeoService;
 
   constructor () {
@@ -22,17 +22,14 @@ export class MapsItemComponent {
       });
   }
 
-    markerDragEnd($event: MouseEvent) {
-        this.lat = $event.coords.lat;
-        this.lng = $event.coords.lng;
-    }
-
   private async setMarkers() {
       const countries = CountryService.getCountries();
       setTimeout(() => {
           console.log(countries);
           for (let i in countries) {
-              (this.markers).push({
+              (this.countriesList).push({
+                  capital: countries[i].capital,
+                  region: countries[i].region,
                   currency: countries[i].currency,
                   icon: countries[i].icon,
                   lat: countries[i].lat,
@@ -58,7 +55,7 @@ export class MapsItemComponent {
   }
 }
 
-interface marker {
+interface countryInfo {
     currency: string;
     icon: string;
     lat: number;
@@ -66,4 +63,6 @@ interface marker {
     label?: string;
     druggable: boolean;
     range: number;
+    capital: string;
+    region: string;
 }
