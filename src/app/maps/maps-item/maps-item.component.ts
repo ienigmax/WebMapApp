@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryService } from '@app/maps/country/country.service';
+import { GeoService } from '@app/maps/geo/geo.service';
 
 @Component({
   selector: 'app-map-item',
@@ -13,8 +14,20 @@ export class MapsItemComponent {
   lat: number = 1;
   lng: number = 1;
   markers: marker[] = [];
+  geo: GeoService;
 
   constructor () {
+      this.getCurrentPosition().then(() => {
+          this.setMarkers().then();
+      });
+  }
+
+    markerDragEnd($event: MouseEvent) {
+        this.lat = $event.coords.lat;
+        this.lng = $event.coords.lng;
+    }
+
+  private async setMarkers() {
       const countries = CountryService.getCountries();
       setTimeout(() => {
           console.log(countries);
@@ -25,16 +38,24 @@ export class MapsItemComponent {
                   lat: countries[i].lat,
                   lng: countries[i].lng,
                   label: countries[i].name,
-                  druggable: false
+                  druggable: false,
+                  range: GeoService.calculateDistance(this.lat, countries[i].lat, this.lng, countries[i].lng)
               });
           }
       }, 2000);
   }
 
-  toggleInfoWindow () {
-
+  private getCurrentPosition() {
+    return new Promise((res, rej) => {
+        this.geo = new GeoService;
+        setTimeout(() => {
+            res(this.geo.getPositionByApi());
+        }, 0);
+    }).then((cords) => {
+        this.lat = cords.lat;
+        this.lng = cords.lng;
+    });
   }
-
 }
 
 interface marker {
@@ -44,4 +65,5 @@ interface marker {
     lng: number;
     label?: string;
     druggable: boolean;
+    range: number;
 }

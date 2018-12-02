@@ -6,14 +6,22 @@
                 [zoom]="zoom"
                 [latitude]="lat"
                 [longitude]="lng">
-          <agm-marker *ngFor="let m of markers"
+
+            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+                <agm-info-window>
+                    <p><b>Label:</b> Your position</p>
+                </agm-info-window>
+            </agm-marker>
+            <agm-marker *ngFor="let m of markers"
                   [iconUrl]='{"url": m.icon,"scaledSize": {"height": 12, "width": 15}}'
                   [latitude]="m.lat"
                   [longitude]="m.lng"
-          >
+            >
               <agm-info-window>
-                  <p><b>Label:</b> {{ m.label }}</p>
-                  <p><b>currency:</b> {{ m.currency }}</p>
+                  <h5>Country Info - {{ m.label }}</h5>
+                  <hr>
+                  <p><b>Currency:</b> {{ m.currency }}</p>
+                  <p><b>Range: </b>{{ m.range }}</p>
               </agm-info-window>
           </agm-marker>
         </agm-map>
