@@ -36,14 +36,13 @@ export class MapsItemComponent {
             region: obj.region,
             population: obj.population
         };
-        console.log(obj, this.clickedCountry);
+
     }
 
   private async setMarkers() {
       const countries = CountryService.getCountries();
       setTimeout(() => {
-          console.log(countries);
-          for (let i in countries) {
+          for (const i in countries) {
               (this.countriesList).push({
                   capital: countries[i].capital || 'None',
                   region: countries[i].region  || 'unknown',
@@ -66,7 +65,7 @@ export class MapsItemComponent {
         setTimeout(() => {
             res(this.geo.getPositionByApi());
         }, 0);
-    }).then((cords) => {
+    }).then((cords: any) => {
         this.lat = cords.lat;
         this.lng = cords.lng;
     });
