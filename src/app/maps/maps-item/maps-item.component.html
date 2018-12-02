@@ -10,8 +10,12 @@
                   [iconUrl]='{"url": m.icon,"scaledSize": {"height": 12, "width": 15}}'
                   [latitude]="m.lat"
                   [longitude]="m.lng"
-                  [openInfoWindow]="m.name"
-          ></agm-marker>
+          >
+              <agm-info-window>
+                  <p><b>Label:</b> {{ m.label }}</p>
+                  <p><b>currency:</b> {{ m.currency }}</p>
+              </agm-info-window>
+          </agm-marker>
         </agm-map>
     </div>
     <div class="col-md-3">

@@ -21,7 +21,7 @@ export class CountryService {
         });
 
         for (let i in response) {
-            (CountryService.countries).push(new Country(response[i].name, response[i].latlng[0], response[i].latlng[1], response[i].flag, response[i].currencies[0].name + response[i].currencies[0].symbol));
+            (CountryService.countries).push(new Country(response[i].name, response[i].latlng[0], response[i].latlng[1], response[i].flag, response[i].currencies[0].name + ' - ' + response[i].currencies[0].symbol));
         }
     }
 
