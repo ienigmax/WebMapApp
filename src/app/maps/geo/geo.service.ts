@@ -32,16 +32,11 @@ export class GeoService {
 
     private fetchPosition = async () => {
         await navigator.geolocation.getCurrentPosition(async (position) => {
-            console.log(position.coords);
             await this.setLatitude(position.coords.latitude);
             await this.setLongtitude(position.coords.longitude);
         }, (err) => {
             console.error(err);
         }, {maximumAge: 50000, timeout: 30000, enableHighAccuracy: false});
-    }
-
-    private async fetchPositionFromApi() {
-
     }
 
 }
