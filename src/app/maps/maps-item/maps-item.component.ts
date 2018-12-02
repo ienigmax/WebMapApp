@@ -53,7 +53,7 @@ export class MapsItemComponent {
                   lng: countries[i].lng,
                   label: countries[i].name,
                   druggable: false,
-                  range: GeoService.calculateDistance(this.lat, countries[i].lat, this.lng, countries[i].lng),
+                  range: Math.floor(GeoService.calculateDistance(this.lat, countries[i].lat, this.lng, countries[i].lng)) + 'km',
                   population: countries[i].population,
               });
           }
@@ -80,7 +80,7 @@ interface countryInfo {
     lng: number;
     label?: string;
     druggable: boolean;
-    range: number;
+    range: string;
     capital: string;
     region: string;
     population: number;
