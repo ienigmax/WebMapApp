@@ -25,9 +25,11 @@ export class InfoWindowComponent implements OnInit {
     @Input()
     flag: string;
 
-  constructor() { }
+    @Input()
+    population: number;
 
-  ngOnInit() {
-  }
+    constructor() { }
 
+    ngOnInit() {
+    }
 }

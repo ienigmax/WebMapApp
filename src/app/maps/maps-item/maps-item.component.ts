@@ -34,6 +34,7 @@ export class MapsItemComponent {
             label: obj.label,
             capital: obj.capital,
             region: obj.region,
+            population: obj.population
         };
         console.log(obj, this.clickedCountry);
     }
@@ -52,7 +53,8 @@ export class MapsItemComponent {
                   lng: countries[i].lng,
                   label: countries[i].name,
                   druggable: false,
-                  range: GeoService.calculateDistance(this.lat, countries[i].lat, this.lng, countries[i].lng)
+                  range: GeoService.calculateDistance(this.lat, countries[i].lat, this.lng, countries[i].lng),
+                  population: countries[i].population,
               });
           }
       }, 2000);
@@ -81,4 +83,5 @@ interface countryInfo {
     range: number;
     capital: string;
     region: string;
+    population: number;
 }
