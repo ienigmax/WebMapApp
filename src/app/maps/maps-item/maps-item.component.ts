@@ -10,7 +10,7 @@ import { GeoService } from '@app/maps/geo/geo.service';
 
 export class MapsItemComponent {
   title: string = 'Countries around the world';
-  zoom: number = 2.3;
+  zoom: number = 3.5;
   lat: number = 1;
   lng: number = 1;
   countriesList: countryInfo[] = [];
