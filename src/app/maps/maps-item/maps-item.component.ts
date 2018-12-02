@@ -14,6 +14,8 @@ export class MapsItemComponent {
   lat: number = 1;
   lng: number = 1;
   countriesList: countryInfo[] = [];
+  clickedCountry;
+  isEmpty: boolean = true;
   geo: GeoService;
 
   constructor () {
@@ -22,15 +24,29 @@ export class MapsItemComponent {
       });
   }
 
+    clickedMarker(obj: object) {
+      this.isEmpty = false;
+        this.clickedCountry = {
+            currency: obj.currency,
+            icon: obj.icon,
+            lat: obj.lat,
+            lng: obj.lng,
+            label: obj.label,
+            capital: obj.capital,
+            region: obj.region,
+        };
+        console.log(obj, this.clickedCountry);
+    }
+
   private async setMarkers() {
       const countries = CountryService.getCountries();
       setTimeout(() => {
           console.log(countries);
           for (let i in countries) {
               (this.countriesList).push({
-                  capital: countries[i].capital,
-                  region: countries[i].region,
-                  currency: countries[i].currency,
+                  capital: countries[i].capital || 'None',
+                  region: countries[i].region  || 'unknown',
+                  currency: countries[i].currency || 'unknown',
                   icon: countries[i].icon,
                   lat: countries[i].lat,
                   lng: countries[i].lng,

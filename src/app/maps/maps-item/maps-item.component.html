@@ -16,6 +16,7 @@
                   [iconUrl]='{"url": cl.icon,"scaledSize": {"height": 12, "width": 15}}'
                   [latitude]="cl.lat"
                   [longitude]="cl.lng"
+                   (markerClick)="clickedMarker(cl)"
             >
               <agm-info-window>
                   <h5>Country Info - {{ cl.label }}</h5>
@@ -29,13 +30,19 @@
     <div class="col-md-3">
         <h2>Country Info</h2>
         <hr>
-        <app-info-window
-            [label]="cl.label"
-            [capital]="cl.capital"
-            [region]="cl.region"
-            [latitude]="cl.lat"
-            [longtitude]="cl.lng"
-            [flag]="cl.icon"
-        ></app-info-window>
+        <div *ngIf="isEmpty; else infoBox">
+            <p>Please, click on the country flag to view country details</p>
+        </div>
+
+        <ng-template #infoBox>
+            <app-info-window
+                [label]="clickedCountry.label"
+                [capital]="clickedCountry.capital"
+                [region]="clickedCountry.region"
+                [latitude]="clickedCountry.lat"
+                [longtitude]="clickedCountry.lng"
+                [flag]="clickedCountry.icon"
+            ></app-info-window>
+        </ng-template>
     </div>
 </div>
