@@ -14,7 +14,7 @@ export class MapsItemComponent {
   lat: number = 1;
   lng: number = 1;
   countriesList: countryInfo[] = [];
-  clickedCountry;
+  clickedCountry: object;
   isEmpty: boolean = true;
   geo: GeoService;
 
@@ -24,7 +24,7 @@ export class MapsItemComponent {
       });
   }
 
-    clickedMarker(obj: object) {
+    clickedMarker(obj: countryInfo) {
       this.isEmpty = false;
         this.clickedCountry = {
             currency: obj.currency,
