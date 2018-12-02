@@ -24,8 +24,4 @@ export class CountryService {
             (CountryService.countries).push(new Country(response[i].name, response[i].latlng[0], response[i].latlng[1], response[i].flag, response[i].currencies[0].name + ' - ' + response[i].currencies[0].symbol));
         }
     }
-
-
-
-
 }
