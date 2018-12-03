@@ -10,7 +10,8 @@ import { MapsComponent } from './maps.component';
 import {InfoWindowComponent} from '@app/maps/info-window/info-window.component';
 import {MapsItemComponent} from '@app/maps/maps-item/maps-item.component';
 import {AgmCoreModule} from '@agm/core';
-import apiKey from '../../Config/key';
+import {SharedPipesModule} from '../pipe/pipe.module';
+import { WikiframeComponent } from './wikiframe/wikiframe.component';
 
 @NgModule({
     imports: [
@@ -22,11 +23,13 @@ import apiKey from '../../Config/key';
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDrG4pglHSdU9h7DP1-Z7eK3uPKvTMQqas'       // Change to another, for testing purposes only
         }),
+        SharedPipesModule,
     ],
     declarations: [
         MapsComponent,
         InfoWindowComponent,
-        MapsItemComponent
+        MapsItemComponent,
+        WikiframeComponent
     ],
     providers: []
 })
